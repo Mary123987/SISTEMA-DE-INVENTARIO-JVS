@@ -9,4 +9,5 @@ public class ApplicationDbContext : IdentityDbContext
         : base(options)
     {
     }
+    public DbSet<SISTEMA_DE_INVENTARIO_JVS.Models.Producto> DataProducto { get; set; }
 }

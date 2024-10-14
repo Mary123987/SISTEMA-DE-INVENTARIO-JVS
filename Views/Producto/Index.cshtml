@@ -1,0 +1,88 @@
+@model SISTEMA_DE_INVENTARIO_JVS.ViewModel.ProductoViewModel
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<div class="container">
+    <h1 class="text-center mb-4">Formulario de Producto</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-controller="Producto" asp-action="Crear" method="post">
+                <div class="form-group">
+                    <label asp-for="FormProducto.Nombre" class="control-label">Nombre del Producto:</label>
+                    <input asp-for="FormProducto.Nombre" class="form-control" />
+                </div><br>
+                <div class="form-group">
+                    <label asp-for="FormProducto.Codigo" class="control-label">Codigo:</label>
+                    <input asp-for="FormProducto.Codigo" class="form-control" />
+                </div><br>
+                <div class="form-group">
+                    <label asp-for="FormProducto.Categoría" class="control-label">Categoria:</label>
+                    <input asp-for="FormProducto.Categoría" class="form-control">
+                </div><br>
+                <div class="form-group">
+                    <label asp-for="FormProducto.Stock" class="control-label">Stock:</label>
+                    <input asp-for="FormProducto.Stock" class="form-control" />
+                </div><br>
+                <div class="form-group">
+                    <label asp-for="FormProducto.UbiAlmacen" class="control-label">Ubicación en el Almacen:</label>
+                    <input asp-for="FormProducto.UbiAlmacen" class="form-control" />
+                </div><br>
+                <div class="form-group">
+                    <label asp-for="FormProducto.Proveedor" class="control-label">Provedor:</label>
+                    <input asp-for="FormProducto.Proveedor" class="form-control" />
+                </div><br>
+                <div class="form-group">
+                    <label asp-for="FormProducto.Precio" class="control-label">Precio:</label>
+                    <input asp-for="FormProducto.Precio" class="form-control" />
+                </div><br>
+                <div class="form-group">
+                    <label asp-for="FormProducto.FechaI" class="control-label">Fecha de Ingreso:</label>
+                    <input asp-for="FormProducto.FechaI" class="form-control" />
+                </div><br>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Crear Producto</button>
+                </div>
+            </form>
+            <h1>@ViewData["Message"]</h1>
+
+        </div>
+        <div class="col-md-6">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nombre del Producto</th>
+                            <th>Codigo</th>
+                            <th>Categoria</th>
+                            <th>Stock</th>
+                            <th>Ubicación en el Almacen</th>
+                            <th>Proveedor</th>
+                            <th>Precio</th>
+                            <th>Fecha de Ingreso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.ListProducto != null)
+                        {
+                            @foreach (var item in Model.ListProducto)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Codigo)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Categoría)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Stock)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.UbiAlmacen)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Proveedor)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Precio)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.FechaI)</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
