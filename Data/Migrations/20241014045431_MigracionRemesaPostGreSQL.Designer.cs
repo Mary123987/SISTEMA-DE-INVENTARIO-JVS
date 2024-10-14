@@ -12,7 +12,7 @@ using SISTEMA_DE_INVENTARIO_JVS.Data;
 namespace SISTEMA_DE_INVENTARIO_JVS.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241014035552_MigracionRemesaPostGreSQL")]
+    [Migration("20241014045431_MigracionRemesaPostGreSQL")]
     partial class MigracionRemesaPostGreSQL
     {
         /// <inheritdoc />
@@ -260,6 +260,40 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("t_producto");
+                });
+
+            modelBuilder.Entity("SISTEMA_DE_INVENTARIO_JVS.Models.Proveedor", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FechaI")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("text");
+
+                    b.Property<string>("NombreC")
+                        .HasColumnType("text");
+
+                    b.Property<string>("RUC")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Telefono")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TipoP")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("t_proveedor");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

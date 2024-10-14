@@ -1,0 +1,90 @@
+@model SISTEMA_DE_INVENTARIO_JVS.ViewModel.ProveedorViewModel
+
+@{
+    ViewData["Title"] = "Proveedores";
+}
+
+<div class="container">
+    <h1 class="text-center mb-4">Formulario de Proveedor</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-controller="Proveedor" asp-action="Crear" method="post">
+                <div class="form-group">
+                    <label asp-for="FormProveedor.Nombre" class="control-label">Nombre del Proveedor:</label>
+                    <input asp-for="FormProveedor.Nombre" class="form-control" />
+                </div><br>
+                <div class="form-group">
+                    <label asp-for="FormProveedor.RUC" class="control-label">RUC:</label>
+                    <input asp-for="FormProveedor.RUC" class="form-control" />
+                </div><br>
+                <div class="form-group">
+                    <label asp-for="FormProveedor.Email" class="control-label">Email:</label>
+                    <input asp-for="FormProveedor.Email" class="form-control">
+                </div><br>
+                <div class="form-group">
+                    <label asp-for="FormProveedor.Telefono" class="control-label">Telefono:</label>
+                    <input asp-for="FormProveedor.Telefono" class="form-control" />
+                </div><br>
+                <div class="form-group">
+                    <label asp-for="FormProveedor.NombreC" class="control-label">Nombre de Contacto:</label>
+                    <input asp-for="FormProveedor.NombreC" class="form-control" />
+                </div><br>
+                <div class="form-group">
+                    <label asp-for="FormProveedor.TipoP" class="control-label">Tipo de Proveedor:</label>
+                    <input asp-for="FormProveedor.TipoP" class="form-control" />
+                </div><br>
+                <div class="form-group">
+                    <label asp-for="FormProveedor.FechaI" class="control-label">Fecha de Ingreso:</label>
+                    <input asp-for="FormProveedor.FechaI" type="date" class="form-control" required />
+                </div><br>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary">Ingresar Proveedor</button>
+                </div>
+            </form>
+            <h1>@ViewData["Message"]</h1>
+
+        </div>
+        <script>
+            // Asegurarse de que la fecha por defecto sea la fecha actual
+            document.addEventListener('DOMContentLoaded', function () {
+                var today = new Date().toISOString().split('T')[0];
+                document.querySelector('input[type="date"]').value = today;
+            });
+        </script>
+        <div><br>
+            <h1 class="text-center mb-4">Lista de Proveedores</h1>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Nombre del Proveedor</th>
+                            <th>RUC</th>
+                            <th>Email</th>
+                            <th>Telefono</th>
+                            <th>Persona de Contacto</th>
+                            <th>Tipo de Proveedor</th>
+                            <th>Fecha de Ingreso</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.ListProveedor != null)
+                        {
+                            @foreach (var item in Model.ListProveedor)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.RUC)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.NombreC)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TipoP)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.FechaI)</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -72,6 +72,25 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "t_proveedor",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Nombre = table.Column<string>(type: "text", nullable: true),
+                    RUC = table.Column<string>(type: "text", nullable: true),
+                    Email = table.Column<string>(type: "text", nullable: true),
+                    Telefono = table.Column<string>(type: "text", nullable: true),
+                    NombreC = table.Column<string>(type: "text", nullable: true),
+                    TipoP = table.Column<string>(type: "text", nullable: true),
+                    FechaI = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_t_proveedor", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -235,6 +254,9 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "t_producto");
+
+            migrationBuilder.DropTable(
+                name: "t_proveedor");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

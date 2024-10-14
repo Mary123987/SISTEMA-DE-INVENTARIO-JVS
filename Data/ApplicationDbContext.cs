@@ -10,4 +10,5 @@ public class ApplicationDbContext : IdentityDbContext
     {
     }
     public DbSet<SISTEMA_DE_INVENTARIO_JVS.Models.Producto> DataProducto { get; set; }
+    public DbSet<SISTEMA_DE_INVENTARIO_JVS.Models.Proveedor> DataProveedor { get; set; }
 }

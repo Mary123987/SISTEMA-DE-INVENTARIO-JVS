@@ -39,7 +39,7 @@
                 </div><br>
                 <div class="form-group">
                     <label asp-for="FormProducto.FechaI" class="control-label">Fecha de Ingreso:</label>
-                    <input asp-for="FormProducto.FechaI" class="form-control" />
+                    <input asp-for="FormProducto.FechaI" type="date" class="form-control" required />
                 </div><br>
                 <div class="form-group text-center">
                     <button type="submit" class="btn btn-primary">Crear Producto</button>
@@ -48,7 +48,15 @@
             <h1>@ViewData["Message"]</h1>
 
         </div>
-        <div>
+        <script>
+            // Asegurarse de que la fecha por defecto sea la fecha actual
+            document.addEventListener('DOMContentLoaded', function () {
+                var today = new Date().toISOString().split('T')[0];
+                document.querySelector('input[type="date"]').value = today;
+            });
+        </script>
+        <div><br>
+            <h1 class="text-center mb-4">Lista de Productos</h1>
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
