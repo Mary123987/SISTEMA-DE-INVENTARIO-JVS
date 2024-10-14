@@ -48,6 +48,10 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Controllers
                 Codigo = viewModel.FormProducto.Codigo,
                 Categoría = viewModel.FormProducto.Categoría,
                 Stock = viewModel.FormProducto.Stock,
+                UbiAlmacen = viewModel.FormProducto.UbiAlmacen,
+                Proveedor = viewModel.FormProducto.Proveedor,
+                Precio = viewModel.FormProducto.Precio,
+                FechaI = viewModel.FormProducto.FechaI,
             };
 
             _context.Add(producto);
