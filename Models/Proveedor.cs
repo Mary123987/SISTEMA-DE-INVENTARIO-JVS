@@ -12,7 +12,6 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Models
        public string? Email { get; set;} 
        public string? Telefono { get; set;} 
        public string? NombreC { get; set;} 
-       public string? TipoP { get; set;} 
        public string? FechaI { get; set;} 
         
     }

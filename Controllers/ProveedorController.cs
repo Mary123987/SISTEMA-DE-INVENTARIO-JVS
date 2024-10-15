@@ -49,7 +49,6 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Controllers
                 Email = viewModel.FormProveedor.Email,
                 Telefono = viewModel.FormProveedor.Telefono,
                 NombreC = viewModel.FormProveedor.NombreC,
-                TipoP = viewModel.FormProveedor.TipoP,
                 FechaI = viewModel.FormProveedor.FechaI,
                 
             };

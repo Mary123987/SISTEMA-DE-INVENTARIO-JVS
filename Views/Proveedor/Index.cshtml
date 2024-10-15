@@ -36,14 +36,6 @@
                         placeholder="Ingrese el nombre de la persona de contacto" required />
                 </div><br>
                 <div class="form-group">
-                    <label asp-for="FormProveedor.TipoP" class="control-label">Tipo de Proveedor:</label>
-                    <select asp-for="FormProveedor.TipoP" class="form-control" required>
-                        <option value="Pendiente">Tipo 1</option>
-                        <option value="Completada">Tipo 2</option>
-                        <option value="Cancelada">Tipo 3</option>
-                    </select>
-                </div><br>
-                <div class="form-group">
                     <label asp-for="FormProveedor.FechaI" class="control-label">Fecha de Ingreso:</label>
                     <input asp-for="FormProveedor.FechaI" type="date" class="form-control" required />
                 </div><br>
@@ -72,7 +64,6 @@
                             <th>Email</th>
                             <th>Telefono</th>
                             <th>Persona de Contacto</th>
-                            <th>Tipo de Proveedor</th>
                             <th>Fecha de Ingreso</th>
                         </tr>
                     </thead>
@@ -87,7 +78,6 @@
                                     <td>@Html.DisplayFor(modelItem => item.Email)</td>
                                     <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
                                     <td>@Html.DisplayFor(modelItem => item.NombreC)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.TipoP)</td>
                                     <td>@Html.DisplayFor(modelItem => item.FechaI)</td>
                                 </tr>
                             }
