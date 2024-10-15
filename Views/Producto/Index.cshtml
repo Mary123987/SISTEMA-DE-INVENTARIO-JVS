@@ -11,32 +11,41 @@
             <form asp-controller="Producto" asp-action="Crear" method="post">
                 <div class="form-group">
                     <label asp-for="FormProducto.Nombre" class="control-label">Nombre del Producto:</label>
-                    <input asp-for="FormProducto.Nombre" class="form-control" />
+                    <input asp-for="FormProducto.Nombre" class="form-control" type="text" maxlength="100"
+                        pattern="[A-Za-z0-9\s\.\,\-\_]+" placeholder="Ingrese el nombre del producto" required />
                 </div><br>
                 <div class="form-group">
-                    <label asp-for="FormProducto.Codigo" class="control-label">Codigo:</label>
-                    <input asp-for="FormProducto.Codigo" class="form-control" />
+                    <label asp-for="FormProducto.Codigo" class="control-label">Código:</label>
+                    <input asp-for="FormProducto.Codigo" class="form-control" type="text" minlength="5" maxlength="20"
+                        pattern="[A-Za-z0-9\-]+" placeholder="Ingrese el código del producto" required />
                 </div><br>
+
                 <div class="form-group">
                     <label asp-for="FormProducto.Categoría" class="control-label">Categoria:</label>
-                    <input asp-for="FormProducto.Categoría" class="form-control">
+                    <input asp-for="FormProducto.Categoría" class="form-control"
+                        placeholder="Ingrese la categoria del producto" required>
                 </div><br>
                 <div class="form-group">
                     <label asp-for="FormProducto.Stock" class="control-label">Stock:</label>
-                    <input asp-for="FormProducto.Stock" class="form-control"/>
+                    <input asp-for="FormProducto.Stock" class="form-control" type="number" min="0" step="1"
+                        placeholder="Ingrese el stock actual del producto" required />
                 </div><br>
                 <div class="form-group">
                     <label asp-for="FormProducto.UbiAlmacen" class="control-label">Ubicación en el Almacen:</label>
-                    <input asp-for="FormProducto.UbiAlmacen" class="form-control"/>
+                    <input asp-for="FormProducto.UbiAlmacen" class="form-control"
+                        placeholder="Ingrese la ubicación del producto" required />
                 </div><br>
                 <div class="form-group">
-                    <label asp-for="FormProducto.Proveedor" class="control-label">Provedor:</label>
-                    <input asp-for="FormProducto.Proveedor" class="form-control"/>
+                    <label asp-for="FormProducto.Proveedor" class="control-label">Proveedor:</label>
+                    <input asp-for="FormProducto.Proveedor" class="form-control" type="text" maxlength="100"
+                        pattern="[A-Za-z\s]+" placeholder="Ingrese el nombre del proveedor" required />
                 </div><br>
                 <div class="form-group">
                     <label asp-for="FormProducto.Precio" class="control-label">Precio:</label>
-                    <input asp-for="FormProducto.Precio" class="form-control" />
+                    <input asp-for="FormProducto.Precio" class="form-control" type="number" step="0.01" min="0"
+                        placeholder="Ingrese el precio del producto" required />
                 </div><br>
+
                 <div class="form-group">
                     <label asp-for="FormProducto.FechaI" class="control-label">Fecha de Ingreso:</label>
                     <input asp-for="FormProducto.FechaI" type="date" class="form-control" required />
@@ -58,9 +67,9 @@
         <div><br>
             <h1 class="text-center mb-4">Lista de Productos</h1>
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered" style="border: 1px solid #3961e4;">
                     <thead>
-                        <tr>
+                        <tr style="background-color: #3961e4;color:white; font-weight: bold;">
                             <th>Nombre del Producto</th>
                             <th>Codigo</th>
                             <th>Categoria</th>
@@ -69,6 +78,7 @@
                             <th>Proveedor</th>
                             <th>Precio</th>
                             <th>Fecha de Ingreso</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>

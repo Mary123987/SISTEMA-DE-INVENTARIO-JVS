@@ -11,27 +11,37 @@
             <form asp-controller="Proveedor" asp-action="Crear" method="post">
                 <div class="form-group">
                     <label asp-for="FormProveedor.Nombre" class="control-label">Nombre del Proveedor:</label>
-                    <input asp-for="FormProveedor.Nombre" class="form-control" />
+                    <input asp-for="FormProveedor.Nombre" class="form-control"
+                        placeholder="Ingrese el nombre de la provedora" required />
                 </div><br>
                 <div class="form-group">
                     <label asp-for="FormProveedor.RUC" class="control-label">RUC:</label>
-                    <input asp-for="FormProveedor.RUC" class="form-control" />
+                    <input asp-for="FormProveedor.RUC" class="form-control" type="text" minlength="11" maxlength="11"
+                        pattern="[0-9]{11}" placeholder="Ingrese el RUC de 11 dígitos" required />
                 </div><br>
+
                 <div class="form-group">
                     <label asp-for="FormProveedor.Email" class="control-label">Email:</label>
-                    <input asp-for="FormProveedor.Email" class="form-control">
+                    <input asp-for="FormProveedor.Email" class="form-control" type="email"
+                        placeholder="Ingrese el correo de contacto" required>
                 </div><br>
                 <div class="form-group">
                     <label asp-for="FormProveedor.Telefono" class="control-label">Telefono:</label>
-                    <input asp-for="FormProveedor.Telefono" class="form-control" />
+                    <input asp-for="FormProveedor.Telefono" class="form-control" type="tel" pattern="[0-9]{9}"
+                        placeholder="Ingrese el teléfono de contacto" />
                 </div><br>
                 <div class="form-group">
                     <label asp-for="FormProveedor.NombreC" class="control-label">Nombre de Contacto:</label>
-                    <input asp-for="FormProveedor.NombreC" class="form-control" />
+                    <input asp-for="FormProveedor.NombreC" class="form-control"
+                        placeholder="Ingrese el nombre de la persona de contacto" required />
                 </div><br>
                 <div class="form-group">
                     <label asp-for="FormProveedor.TipoP" class="control-label">Tipo de Proveedor:</label>
-                    <input asp-for="FormProveedor.TipoP" class="form-control" />
+                    <select asp-for="FormProveedor.TipoP" class="form-control" required>
+                        <option value="Pendiente">Tipo 1</option>
+                        <option value="Completada">Tipo 2</option>
+                        <option value="Cancelada">Tipo 3</option>
+                    </select>
                 </div><br>
                 <div class="form-group">
                     <label asp-for="FormProveedor.FechaI" class="control-label">Fecha de Ingreso:</label>
@@ -54,9 +64,9 @@
         <div><br>
             <h1 class="text-center mb-4">Lista de Proveedores</h1>
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-bordered" style="border: 1px solid #3961e4;">
                     <thead>
-                        <tr>
+                        <tr style="background-color: #3961e4;color:white; font-weight: bold;">
                             <th>Nombre del Proveedor</th>
                             <th>RUC</th>
                             <th>Email</th>
