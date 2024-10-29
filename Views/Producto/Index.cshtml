@@ -4,103 +4,125 @@
     ViewData["Title"] = "Productos";
 }
 
-<div class="container">
-    <h1 class="text-center mb-4">Formulario de Producto</h1>
+<div class="container my-5">
+    <h1 style="font-size: 3rem; font-weight: bold; color: #4A90E2; text-align: center; text-transform: uppercase; letter-spacing: 2px; solid #3961e4; padding-bottom: 10px;">Registro de Productos
+    </h1>
+    <!-- Formulario de Registro -->
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <form asp-controller="Producto" asp-action="Crear" method="post">
-                <div class="form-group">
-                    <label asp-for="FormProducto.Nombre" class="control-label">Nombre del Producto:</label>
-                    <input asp-for="FormProducto.Nombre" class="form-control" type="text" maxlength="100"
-                        pattern="[A-Za-z0-9\s\.\,\-\_]+" placeholder="Ingrese el nombre del producto" required />
-                </div><br>
-                <div class="form-group">
-                    <label asp-for="FormProducto.Codigo" class="control-label">Código:</label>
-                    <input asp-for="FormProducto.Codigo" class="form-control" type="text" minlength="5" maxlength="20"
-                        pattern="[A-Za-z0-9\-]+" placeholder="Ingrese el código del producto" required />
-                </div><br>
+        <div class="col-lg-8">
+            <div class="card shadow-lg p-4">
+                <h2 class="text-center mb-4" style="font-size: 1.8rem; font-weight: 500; color: #4A90E2;">
+                    Nuevo Producto
+                </h2>
+                <form asp-controller="Producto" asp-action="Crear" method="post">
+                    <div class="form-group">
+                        <label asp-for="FormProducto.Nombre" class="control-label">Nombre del Producto:</label>
+                        <input asp-for="FormProducto.Nombre" class="form-control" type="text" maxlength="100"
+                            pattern="[A-Za-z0-9\s\.\,\-\_]+" placeholder="Ingrese el nombre del producto" required />
+                    </div><br>
 
-                <div class="form-group">
-                    <label asp-for="FormProducto.Categoría" class="control-label">Categoria:</label>
-                    <input asp-for="FormProducto.Categoría" class="form-control"
-                        placeholder="Ingrese la categoria del producto" required>
-                </div><br>
-                <div class="form-group">
-                    <label asp-for="FormProducto.Stock" class="control-label">Stock:</label>
-                    <input asp-for="FormProducto.Stock" class="form-control" type="number" min="0" step="1"
-                        placeholder="Ingrese el stock actual del producto" required />
-                </div><br>
-                <div class="form-group">
-                    <label asp-for="FormProducto.UbiAlmacen" class="control-label">Ubicación en el Almacen:</label>
-                    <input asp-for="FormProducto.UbiAlmacen" class="form-control"
-                        placeholder="Ingrese la ubicación del producto" required />
-                </div><br>
-                <div class="form-group">
-                    <label asp-for="FormProducto.Proveedor" class="control-label">Proveedor:</label>
-                    <input asp-for="FormProducto.Proveedor" class="form-control" type="text" maxlength="100"
-                        pattern="[A-Za-z\s]+" placeholder="Ingrese el nombre del proveedor" required />
-                </div><br>
-                <div class="form-group">
-                    <label asp-for="FormProducto.Precio" class="control-label">Precio:</label>
-                    <input asp-for="FormProducto.Precio" class="form-control" type="number" step="0.01" min="0"
-                        placeholder="Ingrese el precio del producto" required />
-                </div><br>
+                    <div class="form-group">
+                        <label asp-for="FormProducto.Codigo" class="control-label">Código:</label>
+                        <input asp-for="FormProducto.Codigo" class="form-control" type="text" minlength="5" maxlength="20"
+                            pattern="[A-Za-z0-9\-]+" placeholder="Ingrese el código del producto" required />
+                    </div><br>
 
-                <div class="form-group">
-                    <label asp-for="FormProducto.FechaI" class="control-label">Fecha de Ingreso:</label>
-                    <input asp-for="FormProducto.FechaI" type="date" class="form-control" required />
-                </div><br>
-                <div class="form-group text-center">
-                    <button type="submit" class="btn btn-primary">Crear Producto</button>
-                </div>
-            </form>
-            <h1>@ViewData["Message"]</h1>
+                    <div class="form-group">
+                        <label asp-for="FormProducto.Categoría" class="control-label">Categoría:</label>
+                        <input asp-for="FormProducto.Categoría" class="form-control"
+                            placeholder="Ingrese la categoría del producto" required />
+                    </div><br>
 
-        </div>
-        <script>
-            // Asegurarse de que la fecha por defecto sea la fecha actual
-            document.addEventListener('DOMContentLoaded', function () {
-                var today = new Date().toISOString().split('T')[0];
-                document.querySelector('input[type="date"]').value = today;
-            });
-        </script>
-        <div><br>
-            <h1 class="text-center mb-4">Lista de Productos</h1>
-            <div class="table-responsive">
-                <table class="table table-bordered" style="border: 1px solid #3961e4;">
-                    <thead>
-                        <tr style="background-color: #3961e4;color:white; font-weight: bold;">
-                            <th>Nombre del Producto</th>
-                            <th>Codigo</th>
-                            <th>Categoria</th>
-                            <th>Stock</th>
-                            <th>Ubicación en el Almacen</th>
-                            <th>Proveedor</th>
-                            <th>Precio</th>
-                            <th>Fecha de Ingreso</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.ListProducto != null)
-                        {
-                            @foreach (var item in Model.ListProducto)
-                            {
-                                <tr>
-                                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Codigo)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Categoría)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Stock)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.UbiAlmacen)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Proveedor)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Precio)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.FechaI)</td>
-                                </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
+                    <div class="form-group">
+                        <label asp-for="FormProducto.Stock" class="control-label">Stock:</label>
+                        <input asp-for="FormProducto.Stock" class="form-control" type="number" min="0" step="1"
+                            placeholder="Ingrese el stock actual del producto" required />
+                    </div><br>
+
+                    <div class="form-group">
+                        <label asp-for="FormProducto.UbiAlmacen" class="control-label">Ubicación en el Almacén:</label>
+                        <input asp-for="FormProducto.UbiAlmacen" class="form-control"
+                            placeholder="Ingrese la ubicación del producto" required />
+                    </div><br>
+
+                    <div class="form-group">
+                        <label asp-for="FormProducto.Proveedor" class="control-label">Proveedor:</label>
+                        <input asp-for="FormProducto.Proveedor" class="form-control" type="text" maxlength="100"
+                            pattern="[A-Za-z\s]+" placeholder="Ingrese el nombre del proveedor" required />
+                    </div><br>
+
+                    <div class="form-group">
+                        <label asp-for="FormProducto.Precio" class="control-label">Precio:</label>
+                        <input asp-for="FormProducto.Precio" class="form-control" type="number" step="0.01" min="0"
+                            placeholder="Ingrese el precio del producto" required />
+                    </div><br>
+
+                    <div class="form-group">
+                        <label asp-for="FormProducto.FechaI" class="control-label">Fecha de Ingreso:</label>
+                        <input asp-for="FormProducto.FechaI" type="date" class="form-control" required />
+                    </div><br>
+
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary btn-lg" style="background-color: #3961e4; border: none;">
+                            Crear Producto
+                        </button>
+                    </div>
+                </form>
             </div>
+        </div>
+    </div>
+
+    <!-- Script para establecer la fecha actual -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var today = new Date().toISOString().split('T')[0];
+            document.querySelector('input[type="date"]').value = today;
+        });
+    </script>
+
+    <!-- Tabla de Productos -->
+    <div class="mt-5">
+        <h2 class="text-center mb-4" style="font-size: 2rem; font-weight: 500; color: #333;">
+            Lista de Productos
+        </h2>
+        <div class="table-responsive">
+            <table class="table table-hover shadow-sm" style="border: 1px solid #3961e4;">
+                <thead>
+                    <tr style="background-color: #3961e4; color: white; font-weight: bold;">
+                        <th>Nombre del Producto</th>
+                        <th>Código</th>
+                        <th>Categoría</th>
+                        <th>Stock</th>
+                        <th>Ubicación en el Almacén</th>
+                        <th>Proveedor</th>
+                        <th>Precio</th>
+                        <th>Fecha de Ingreso</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.ListProducto != null)
+                    {
+                        @foreach (var item in Model.ListProducto)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Codigo)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Categoría)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Stock)</td>
+                                <td>@Html.DisplayFor(modelItem => item.UbiAlmacen)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Proveedor)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Precio)</td>
+                                <td>@Html.DisplayFor(modelItem => item.FechaI)</td>
+                                <td>
+                                    <button class="btn btn-sm btn-info">Editar</button>
+                                    <button class="btn btn-sm btn-danger">Eliminar</button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
