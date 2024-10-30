@@ -68,7 +68,7 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Controllers
             {
                 return NotFound();
             }
-            return Json(producto)
+            return Json(producto);
         }
 
         [HttpPost]

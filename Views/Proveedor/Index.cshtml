@@ -14,7 +14,8 @@
                 <h2 class="text-center mb-4" style="font-size: 1.8rem; font-weight: 500; color: #4A90E2;">
                     Nuevo Proveedor
                 </h2>
-                <form asp-controller="Proveedor" asp-action="Crear" method="post">
+                <form id="formularioProveedor" asp-controller="Proveedor" asp-action="Crear" method="post">
+                    <input asp-for="FormProveedor.Id" type="hidden" />
                     <div class="form-group">
                         <label asp-for="FormProveedor.Nombre" class="control-label">Nombre del Proveedor:</label>
                         <input asp-for="FormProveedor.Nombre" class="form-control"
@@ -46,7 +47,7 @@
                         <input asp-for="FormProveedor.FechaI" type="date" class="form-control" required />
                     </div><br>
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary btn-lg" style="background-color: #3961e4; border: none;">
+                        <button id="submitButton" type="submit" class="btn btn-primary btn-lg" style="background-color: #3961e4; border: none;">
                             Ingresar Proveedor
                         </button>
                     </div>
@@ -58,6 +59,24 @@
                         var today = new Date().toISOString().split('T')[0];
                         document.querySelector('input[type="date"]').value = today;
                     });
+
+                    function cargarProveedor(id) {
+                        fetch(`/Proveedor/ObtenerProveedor?id=${id}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            document.querySelector('[name="FormProveedor.Id"]').value = data.id;
+                            document.querySelector('[name="FormProveedor.Nombre"]').value = data.nombre;
+                            document.querySelector('[name="FormProveedor.RUC"]').value = data.ruc;
+                            document.querySelector('[name="FormProveedor.Email"]').value = data.email;
+                            document.querySelector('[name="FormProveedor.Telefono"]').value = data.telefono;
+                            document.querySelector('[name="FormProveedor.NombreC"]').value = data.nombreC;
+                            document.querySelector('[name="FormProveedor.FechaI"]').value = data.fechaI.split('T')[0];
+                            
+                            document.querySelector('#submitButton').innerText = "Guardar Cambios";
+                            document.querySelector("#formularioProveedor").action = "/Proveedor/Editar";
+                        })
+                        .catch(error => console.error('Error al cargar el proveedor:', error));
+                    }
                 </script>
 
             </div>
@@ -95,8 +114,7 @@
                                 <td>@Html.DisplayFor(modelItem => item.NombreC)</td>
                                 <td>@Html.DisplayFor(modelItem => item.FechaI)</td>
                                 <td>
-                                    <!-- Botones para Editar y Eliminar -->
-                                    <button class="btn btn-sm btn-info">Editar</button>
+                                    <button class="btn btn-sm btn-info" onclick="cargarProveedor(@item.Id)">Editar</button>
                                     <button class="btn btn-sm btn-danger">Eliminar</button>
                                 </td>
                             </tr>
