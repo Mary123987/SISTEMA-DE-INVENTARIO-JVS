@@ -14,7 +14,8 @@
                 <h2 class="text-center mb-4" style="font-size: 1.8rem; font-weight: 500; color: #4A90E2;">
                     Nuevo Producto
                 </h2>
-                <form asp-controller="Producto" asp-action="Crear" method="post">
+                <form id="formularioProducto" asp-controller="Producto" asp-action="Crear" method="post">
+                    <input asp-for="FormProducto.Id" type="hidden" />
                     <div class="form-group">
                         <label asp-for="FormProducto.Nombre" class="control-label">Nombre del Producto:</label>
                         <input asp-for="FormProducto.Nombre" class="form-control" type="text" maxlength="100"
@@ -63,7 +64,7 @@
                     </div><br>
 
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary btn-lg" style="background-color: #3961e4; border: none;">
+                        <button id="submitButton" type="submit" class="btn btn-primary btn-lg" style="background-color: #3961e4; border: none;">
                             Crear Producto
                         </button>
                     </div>
@@ -78,6 +79,26 @@
             var today = new Date().toISOString().split('T')[0];
             document.querySelector('input[type="date"]').value = today;
         });
+
+        function cargarProducto(id) {
+            fetch(`/Producto/ObtenerProducto?id=${id}`)
+            .then(response => response.json())
+            .then(data => {
+                document.querySelector('[name="FormProducto.Id"]').value = data.id;
+                document.querySelector('[name="FormProducto.Nombre"]').value = data.nombre;
+                document.querySelector('[name="FormProducto.Codigo"]').value = data.codigo;
+                document.querySelector('[name="FormProducto.Categoría"]').value = data.categoría;
+                document.querySelector('[name="FormProducto.Stock"]').value = data.stock;
+                document.querySelector('[name="FormProducto.UbiAlmacen"]').value = data.ubiAlmacen;
+                document.querySelector('[name="FormProducto.Proveedor"]').value = data.proveedor;
+                document.querySelector('[name="FormProducto.Precio"]').value = data.precio;
+                document.querySelector('[name="FormProducto.FechaI"]').value = data.fechaI.split('T')[0];
+                
+                document.querySelector('#submitButton').innerText = "Guardar Cambios";
+                document.querySelector("#formularioProducto").action = "/Producto/Editar";
+            })
+            .catch(error => console.error('Error al cargar el producto:', error));
+        }
     </script>
 
     <!-- Tabla de Productos -->
@@ -115,7 +136,7 @@
                                 <td>@Html.DisplayFor(modelItem => item.Precio)</td>
                                 <td>@Html.DisplayFor(modelItem => item.FechaI)</td>
                                 <td>
-                                    <button class="btn btn-sm btn-info">Editar</button>
+                                    <button class="btn btn-sm btn-info" onclick="cargarProducto(@item.Id)">Editar</button>
                                     <button class="btn btn-sm btn-danger">Eliminar</button>
                                 </td>
                             </tr>
