@@ -1,0 +1,70 @@
+@model IEnumerable<IGrouping<string, SISTEMA_DE_INVENTARIO_JVS.Models.Producto>>
+
+<div class="container my-4">
+    <div class="table-responsive">
+        <table class="table table-bordered shadow-sm rounded">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Categoría</th>
+                    <th>Nombre</th>
+                    <th>Código</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
+                    <th>Fecha de Ingreso</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var group in Model)
+                {
+                    <tr class="table-primary">
+                        <td colspan="6">@group.Key</td>
+                    </tr>
+                    @foreach (var producto in group)
+                    {
+                        <tr>
+                            <td></td>
+                            <td>@producto.Nombre</td>
+                            <td>@producto.Codigo</td>
+                            <td>@producto.Stock</td>
+                            <td>@producto.Precio</td>
+                            <td>@producto.FechaI</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    .table {
+        margin: auto;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .table-bordered {
+        border: 1px solid #dee2e6;
+    }
+
+    .shadow-sm {
+        box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    }
+
+    .rounded {
+        border-radius: .25rem;
+    }
+
+    .thead-dark th {
+        background-color: mediumaquamarine;
+        color: white;
+    }
+
+    .table-primary {
+        background-color: #d1ecf1;
+    }
+
+    .container {
+        max-width: 80%;
+    }
+</style>
