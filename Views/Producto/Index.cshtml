@@ -4,8 +4,11 @@
     ViewData["Title"] = "Productos";
 }
 
+
 <div class="container my-5">
-    <h1 style="font-size: 3rem; font-weight: bold; color: #4A90E2; text-align: center; text-transform: uppercase; letter-spacing: 2px; solid #3961e4; padding-bottom: 10px;">Registro de Productos
+    <h1
+        style="font-size: 3rem; font-weight: bold; color: #4A90E2; text-align: center; text-transform: uppercase; letter-spacing: 2px; solid #3961e4; padding-bottom: 10px;">
+        Registro de Productos
     </h1>
     <!-- Formulario de Registro -->
     <div class="row justify-content-center">
@@ -24,14 +27,22 @@
 
                     <div class="form-group">
                         <label asp-for="FormProducto.Codigo" class="control-label">Código:</label>
-                        <input asp-for="FormProducto.Codigo" class="form-control" type="text" minlength="5" maxlength="20"
-                            pattern="[A-Za-z0-9\-]+" placeholder="Ingrese el código del producto" required />
+                        <input asp-for="FormProducto.Codigo" class="form-control" type="text" minlength="5"
+                            maxlength="20" pattern="[A-Za-z0-9\-]+" placeholder="Ingrese el código del producto"
+                            required />
                     </div><br>
 
                     <div class="form-group">
                         <label asp-for="FormProducto.Categoría" class="control-label">Categoría:</label>
-                        <input asp-for="FormProducto.Categoría" class="form-control"
-                            placeholder="Ingrese la categoría del producto" required />
+                        <select asp-for="FormProducto.Categoría" class="form-control">
+                            <option value="SIEMENS">SIEMENS</option>
+                            <option value="SCHNEIDER">SCHNEIDER</option>
+                            <option value="WEG">WEG</option>
+                            <option value="CABLES">CABLES</option>
+                            <option value="CAJAS">CAJAS</option>
+                            <option value="POLYESTER">POLYESTER</option>
+                            <option value="OTROS">OTROS</option>
+                        </select>
                     </div><br>
 
                     <div class="form-group">
@@ -64,7 +75,8 @@
                     </div><br>
 
                     <div class="form-group text-center">
-                        <button id="submitButton" type="submit" class="btn btn-primary btn-lg" style="background-color: #3961e4; border: none;">
+                        <button id="submitButton" type="submit" class="btn btn-primary btn-lg"
+                            style="background-color: #3961e4; border: none;">
                             Crear Producto
                         </button>
                     </div>
@@ -73,7 +85,7 @@
         </div>
     </div>
 
-    <!-- Script para establecer la fecha actual -->
+    <!-- Script para establecer la fecha actual, editar y eliminar (producto) -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var today = new Date().toISOString().split('T')[0];
@@ -82,22 +94,22 @@
 
         function cargarProducto(id) {
             fetch(`/Producto/ObtenerProducto?id=${id}`)
-            .then(response => response.json())
-            .then(data => {
-                document.querySelector('[name="FormProducto.Id"]').value = data.id;
-                document.querySelector('[name="FormProducto.Nombre"]').value = data.nombre;
-                document.querySelector('[name="FormProducto.Codigo"]').value = data.codigo;
-                document.querySelector('[name="FormProducto.Categoría"]').value = data.categoría;
-                document.querySelector('[name="FormProducto.Stock"]').value = data.stock;
-                document.querySelector('[name="FormProducto.UbiAlmacen"]').value = data.ubiAlmacen;
-                document.querySelector('[name="FormProducto.Proveedor"]').value = data.proveedor;
-                document.querySelector('[name="FormProducto.Precio"]').value = data.precio;
-                document.querySelector('[name="FormProducto.FechaI"]').value = data.fechaI.split('T')[0];
-                
-                document.querySelector('#submitButton').innerText = "Guardar Cambios";
-                document.querySelector("#formularioProducto").action = "/Producto/Editar";
-            })
-            .catch(error => console.error('Error al cargar el producto:', error));
+                .then(response => response.json())
+                .then(data => {
+                    document.querySelector('[name="FormProducto.Id"]').value = data.id;
+                    document.querySelector('[name="FormProducto.Nombre"]').value = data.nombre;
+                    document.querySelector('[name="FormProducto.Codigo"]').value = data.codigo;
+                    document.querySelector('[name="FormProducto.Categoría"]').value = data.categoría;
+                    document.querySelector('[name="FormProducto.Stock"]').value = data.stock;
+                    document.querySelector('[name="FormProducto.UbiAlmacen"]').value = data.ubiAlmacen;
+                    document.querySelector('[name="FormProducto.Proveedor"]').value = data.proveedor;
+                    document.querySelector('[name="FormProducto.Precio"]').value = data.precio;
+                    document.querySelector('[name="FormProducto.FechaI"]').value = data.fechaI.split('T')[0];
+
+                    document.querySelector('#submitButton').innerText = "Guardar Cambios";
+                    document.querySelector("#formularioProducto").action = "/Producto/Editar";
+                })
+                .catch(error => console.error('Error al cargar el producto:', error));
         }
 
         function eliminarProducto(id) {
@@ -109,14 +121,14 @@
                         'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
                     }
                 })
-                .then(response => {
-                    if (response.ok) {
-                        window.location.reload();
-                    } else {
-                        alert("Error al eliminar el producto.");
-                    }
-                })
-                .catch(error => console.error('Error al eliminar el producto:', error));
+                    .then(response => {
+                        if (response.ok) {
+                            window.location.reload();
+                        } else {
+                            alert("Error al eliminar el producto.");
+                        }
+                    })
+                    .catch(error => console.error('Error al eliminar el producto:', error));
             }
         }
     </script>
