@@ -60,6 +60,39 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
+        public IActionResult ObtenerProducto(long id)
+        {
+            var producto = _context.DataProducto.FirstOrDefault(p => p.Id == id);
+            if (producto == null)
+            {
+                return NotFound();
+            }
+            return Json(producto);
+        }
+
+        [HttpPost]
+        public IActionResult Editar(ProductoViewModel viewModel)
+        {
+            var productoExistente = _context.DataProducto.FirstOrDefault(p => p.Id == viewModel.FormProducto.Id);
+            if (productoExistente != null)
+            {
+                productoExistente.Nombre = viewModel.FormProducto.Nombre;
+                productoExistente.Codigo = viewModel.FormProducto.Codigo;
+                productoExistente.Categoría = viewModel.FormProducto.Categoría;
+                productoExistente.Stock = viewModel.FormProducto.Stock;
+                productoExistente.UbiAlmacen = viewModel.FormProducto.UbiAlmacen;
+                productoExistente.Proveedor = viewModel.FormProducto.Proveedor;
+                productoExistente.Precio = viewModel.FormProducto.Precio;
+                productoExistente.FechaI = viewModel.FormProducto.FechaI;
+
+                _context.Update(productoExistente);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
