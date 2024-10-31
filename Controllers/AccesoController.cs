@@ -31,7 +31,7 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Controllers
             var user = _context.DataUsuario.FirstOrDefault(x => x.UsuarioAdmin == model.UsuarioAdmin && x.Contraseña == model.Contraseña);
             if (user != null)
             {
-                return RedirectToAction("Index", "Home"); 
+                return RedirectToAction("Index", "Admin"); 
             }
             else
             {
