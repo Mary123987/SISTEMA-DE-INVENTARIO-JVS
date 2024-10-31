@@ -90,6 +90,18 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpDelete]
+        public IActionResult Eliminar(long id)
+        {
+            var proveedor = _context.DataProveedor.FirstOrDefault(p => p.Id == id);
+            if (proveedor != null)
+            {
+                _context.DataProveedor.Remove(proveedor);
+                _context.SaveChanges();
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

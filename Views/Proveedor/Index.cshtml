@@ -77,6 +77,26 @@
                         })
                         .catch(error => console.error('Error al cargar el proveedor:', error));
                     }
+
+                    function eliminarProveedor(id) {
+                        if (confirm("¿Estás seguro de que deseas eliminar este proveedor?")) {
+                            fetch(`/Proveedor/Eliminar?id=${id}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                                }
+                            })
+                            .then(response => {
+                                if (response.ok) {
+                                    window.location.reload();
+                                } else {
+                                    alert("Error al eliminar el proveedor.");
+                                }
+                            })
+                            .catch(error => console.error('Error al eliminar el proveedor:', error));
+                        }
+                    }
                 </script>
 
             </div>
@@ -115,7 +135,7 @@
                                 <td>@Html.DisplayFor(modelItem => item.FechaI)</td>
                                 <td>
                                     <button class="btn btn-sm btn-info" onclick="cargarProveedor(@item.Id)">Editar</button>
-                                    <button class="btn btn-sm btn-danger">Eliminar</button>
+                                    <button class="btn btn-sm btn-danger" onclick="eliminarProveedor(@item.Id)">Eliminar</button>
                                 </td>
                             </tr>
                         }
