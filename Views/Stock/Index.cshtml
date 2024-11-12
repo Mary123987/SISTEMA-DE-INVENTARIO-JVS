@@ -11,13 +11,14 @@
                     <th>Stock</th>
                     <th>Precio</th>
                     <th>Fecha de Ingreso</th>
+                    <th>Acciones</th> <!-- Nueva columna para acciones -->
                 </tr>
             </thead>
             <tbody>
                 @foreach (var group in Model)
                 {
                     <tr class="table-primary">
-                        <td colspan="6">@group.Key</td>
+                        <td colspan="7">@group.Key</td> <!-- Ajustar colspan -->
                     </tr>
                     @foreach (var producto in group)
                     {
@@ -28,6 +29,10 @@
                             <td>@producto.Stock</td>
                             <td>@producto.Precio</td>
                             <td>@producto.FechaI</td>
+                            <td>
+                                <button class="btn success" onclick="editProduct(@producto.Id)">Editar</button>
+                                <button class="btn danger" onclick="deleteProduct(@producto.Id)">Eliminar</button>
+                            </td>
                         </tr>
                     }
                 }
@@ -35,6 +40,26 @@
         </table>
     </div>
 </div>
+
+<script>
+     function editProduct(id) {
+        window.location.href = '@Url.Action("Editar", "Stock")/' + id;
+    }
+
+    function deleteProduct(id) {
+        if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+            fetch('@Url.Action("Eliminar", "Stock")/' + id, {
+                method: 'DELETE'
+            }).then(response => {
+                if (response.ok) {
+                    location.reload();
+                } else {
+                    alert('Error al eliminar el producto.');
+                }
+            });
+        }
+    }
+</script>
 
 <style>
     .table {
@@ -66,5 +91,26 @@
 
     .container {
         max-width: 80%;
-    }
+    }.btn {
+  border: none; 
+  color: black; 
+  padding: 14px 28px; 
+  cursor: pointer; 
+  border-radius: 5px; 
+}
+
+.primary {background-color: white; border: 2px solid #007bff;} 
+.primary:hover {background: #0b7dda; color: white;}
+
+.secondary {background-color: white; border: 2px solid #e7e7e7;} 
+.secondary:hover {background: #ddd; color: white;}
+
+.success {background-color: white; border: 2px solid #04AA6D;} 
+.success:hover {background-color: #46a049; color: white;}
+
+.warning {background-color: white; border: 2px solid #ff9800;} 
+.warning:hover {background: #e68a00; color: white;}
+
+.danger {background-color: white; border: 2px solid #f44336;} 
+.danger:hover {background: #da190b; color: white;}
 </style>

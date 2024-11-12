@@ -2,45 +2,100 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Bienvenido al Inventario</h1>
-</div><br>
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="row row-cols-1 row-cols-md-2 g-4">
-  <div class="col">
-    <div class="card">
-      <img src="~/img/imagen2.jpg" class="card-img-top" alt="..." height="400">
-      <div class="card-body">
-        <h5 class="card-title">Productos</h5>
-        <p class="card-text">Lista de todos los productos registrados en el sistema. Acceda para ver detalles, agregue nuevos productos o modifique los existentes.</p>
-      </div>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"] - SISTEMA_DE_INVENTARIO_JVS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .card-img-top {
+            object-fit: cover;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #343a40;
+        }
+        .card-text {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4">Bienvenido al Inventario</h1>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card">
+                    <img src="~/img/imagen2.jpg" class="card-img-top" alt="Productos" height="300">
+                    <div class="card-body">
+                        <h5 class="card-title">Productos</h5>
+                        <p class="card-text">Lista de todos los productos registrados en el sistema. Acceda para ver detalles, agregue nuevos productos o modifique los existentes.</p>
+                        <a href="#" class="btn btn-primary">Ver productos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="~/img/imagen1.jpg" class="card-img-top" alt="Stock" height="300">
+                    <div class="card-body">
+                        <h5 class="card-title">Stock</h5>
+                        <p class="card-text">Consulta el inventario actual y verifica la cantidad disponible de cada producto. Controla el nivel de stock en tiempo real.</p>
+                        <a href="#" class="btn btn-primary">Ver stock</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="~/img/imagen3.jpg" class="card-img-top" alt="Proveedores" height="300">
+                    <div class="card-body">
+                        <h5 class="card-title">Proveedores</h5>
+                        <p class="card-text">Información de todos los proveedores asociados. Gestiona contactos, actualiza datos y agrega nuevos proveedores.</p>
+                        <a href="#" class="btn btn-primary">Ver proveedores</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <img src="~/img/imagen4.jpg" class="card-img-top" alt="Notificaciones" height="300">
+                    <div class="card-body">
+                        <h5 class="card-title">Notificaciones</h5>
+                        <p class="card-text">Alertas importantes sobre el inventario, como productos en bajo stock o entregas pendientes de proveedores.</p>
+                        <a href="#" class="btn btn-primary">Ver notificaciones</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <img src="~/img/imagen1.jpg" class="card-img-top" alt="..." height="400">
-      <div class="card-body">
-        <h5 class="card-title">Stock</h5>
-        <p class="card-text">Consulta el inventario actual y verifica la cantidad disponible de cada producto. Controla el nivel de stock en tiempo real.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <img src="~/img/imagen3.jpg" class="card-img-top" alt="..." height="400">
-      <div class="card-body">
-        <h5 class="card-title">Proveedores</h5>
-        <p class="card-text">Información de todos los proveedores asociados. Gestiona contactos, actualiza datos y agrega nuevos proveedores.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <img src="~/img/imagen4.jpg" class="card-img-top" alt="..." height="400">
-      <div class="card-body">
-        <h5 class="card-title">Notificaciones</h5>
-        <p class="card-text">Alertas importantes sobre el inventario, como productos en bajo stock o entregas pendientes de proveedores.</p>
-      </div>
-    </div>
-  </div>
-</div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+
+</html>
