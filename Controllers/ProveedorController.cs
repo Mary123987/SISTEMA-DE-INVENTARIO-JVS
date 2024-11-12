@@ -23,9 +23,17 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string? searchTerm = null)
         {
             var misproveedor = from o in _context.DataProveedor select o;
+
+            // Buscar Proveedor
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                misproveedor = misproveedor.Where(p => p.Nombre.Contains(searchTerm) ||
+                                                    p.RUC.Contains(searchTerm) ||
+                                                    p.NombreC.Contains(searchTerm));
+            }
             _logger.LogDebug("proveedor {misproveedor}", misproveedor);
             var viewModel = new ProveedorViewModel
             {

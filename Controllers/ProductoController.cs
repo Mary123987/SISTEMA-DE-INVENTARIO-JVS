@@ -26,7 +26,7 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Controllers
         public IActionResult Index(string? searchTerm = null)
         {
             var misproductos = from o in _context.DataProducto select o;
-            // Buscar
+            // Buscar Producto
             if (!string.IsNullOrEmpty(searchTerm))
             {
                 misproductos = misproductos.Where(p => p.Nombre.Contains(searchTerm) ||
