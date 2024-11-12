@@ -23,9 +23,18 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string? searchTerm = null)
         {
             var misproductos = from o in _context.DataProducto select o;
+            // Buscar
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                misproductos = misproductos.Where(p => p.Nombre.Contains(searchTerm) ||
+                                                    p.Codigo.Contains(searchTerm) ||
+                                                    p.Categoría.Contains(searchTerm) ||
+                                                    p.Proveedor.Contains(searchTerm));
+            }
+
             _logger.LogDebug("producto {misproductos}", misproductos);
             var viewModel = new ProductoViewModel
             {
