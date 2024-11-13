@@ -59,6 +59,8 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Controllers
                     _context.Update(productoExistente);
                     _context.SaveChanges();
                 }
+                TempData["Message"] = "El stock ha sido actualizado";
+                TempData["MessageType"] = "info";
                 return RedirectToAction(nameof(Index));
             }
             return View(producto);
@@ -74,6 +76,8 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Controllers
                 _context.SaveChanges();
                 return Ok();
             }
+            TempData["Message"] = "El stock hizo una salida exitosamente";
+            TempData["MessageType"] = "warning";
             return NotFound();
         }
 

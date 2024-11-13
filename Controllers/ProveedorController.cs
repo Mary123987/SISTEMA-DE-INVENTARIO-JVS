@@ -58,11 +58,13 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Controllers
                 Telefono = viewModel.FormProveedor.Telefono,
                 NombreC = viewModel.FormProveedor.NombreC,
                 FechaI = viewModel.FormProveedor.FechaI,
-                
+
             };
 
             _context.Add(proveedor);
             _context.SaveChanges();
+            TempData["Message"] = "Proveedor agregado exitosamente";
+            TempData["MessageType"] = "success";
 
             return RedirectToAction(nameof(Index));
         }
@@ -94,6 +96,8 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Controllers
                 _context.Update(proveedorExistente);
                 _context.SaveChanges();
             }
+            TempData["Message"] = "El proveedor ha sido actualizado";
+            TempData["MessageType"] = "info";
 
             return RedirectToAction(nameof(Index));
         }
@@ -107,6 +111,8 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Controllers
                 _context.DataProveedor.Remove(proveedor);
                 _context.SaveChanges();
             }
+            TempData["Message"] = "El proveedor se elimino exitosamente";
+            TempData["MessageType"] = "warning";
             return RedirectToAction(nameof(Index));
         }
 

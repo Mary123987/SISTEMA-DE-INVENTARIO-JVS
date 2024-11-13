@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace SISTEMA_DE_INVENTARIO_JVS.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class MigracionRemesaPostGreSQL : Migration
+    public partial class MigracionNuevaPostGreSQL : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -82,12 +82,25 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Data.Migrations
                     Email = table.Column<string>(type: "text", nullable: true),
                     Telefono = table.Column<string>(type: "text", nullable: true),
                     NombreC = table.Column<string>(type: "text", nullable: true),
-                    TipoP = table.Column<string>(type: "text", nullable: true),
                     FechaI = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_t_proveedor", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "usuarios",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    contraseña = table.Column<string>(type: "text", nullable: false),
+                    usuario = table.Column<string>(type: "text", nullable: false),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_usuarios", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -257,6 +270,9 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "t_proveedor");
+
+            migrationBuilder.DropTable(
+                name: "usuarios");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

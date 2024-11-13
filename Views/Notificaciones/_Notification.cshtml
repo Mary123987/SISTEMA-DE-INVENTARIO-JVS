@@ -1,0 +1,29 @@
+@{
+    var message = TempData["Message"] as string;
+    var messageType = TempData["MessageType"] as string ?? "success";
+}
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="alert alert-@messageType alert-dismissible fade show" role="alert">
+    <div class="d-flex align-items-center">
+        @switch (messageType)
+            {
+                case "success":
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    break;
+                case "danger":
+                    <i class="bi bi-x-circle-fill me-2"></i>
+                    break;
+                case "warning":
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    break;
+                case "info":
+                    <i class="bi bi-info-circle-fill me-2"></i>
+                    break;
+            }
+            <strong>@message</strong>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}

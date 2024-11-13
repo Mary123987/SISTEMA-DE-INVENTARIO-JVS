@@ -66,6 +66,8 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Controllers
             _context.Add(producto);
             _context.SaveChanges();
 
+            TempData["Message"] = "Producto agregado exitosamente";
+            TempData["MessageType"] = "success";
             return RedirectToAction(nameof(Index));
         }
 
@@ -98,6 +100,8 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Controllers
                 _context.Update(productoExistente);
                 _context.SaveChanges();
             }
+            TempData["Message"] = "El producto ha sido actualizado";
+            TempData["MessageType"] = "info";
 
             return RedirectToAction(nameof(Index));
         }
@@ -111,6 +115,8 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Controllers
                 _context.DataProducto.Remove(producto);
                 _context.SaveChanges();
             }
+            TempData["Message"] = "El producto se elimino exitosamente";
+            TempData["MessageType"] = "warning";
             return RedirectToAction(nameof(Index));
         }
 

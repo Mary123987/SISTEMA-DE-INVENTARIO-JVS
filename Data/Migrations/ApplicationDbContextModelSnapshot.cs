@@ -285,12 +285,35 @@ namespace SISTEMA_DE_INVENTARIO_JVS.Data.Migrations
                     b.Property<string>("Telefono")
                         .HasColumnType("text");
 
-                    b.Property<string>("TipoP")
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
 
                     b.ToTable("t_proveedor");
+                });
+
+            modelBuilder.Entity("SISTEMA_DE_INVENTARIO_JVS.Usuario", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Contraseña")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("contraseña");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
+
+                    b.Property<string>("UsuarioAdmin")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("usuario");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("usuarios");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

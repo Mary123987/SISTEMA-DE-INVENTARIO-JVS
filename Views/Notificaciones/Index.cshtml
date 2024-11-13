@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,50 +11,63 @@
         /* Estilos CSS */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f4ff; /* Fondo suave */
-            color: #333; /* Color del texto */
+            background-color: #f0f4ff;
+            /* Fondo suave */
+            color: #333;
+            /* Color del texto */
             margin: 0;
-            padding-bottom: 20px; /* Espacio para el pie de página */
+            padding-bottom: 20px;
+            /* Espacio para el pie de página */
         }
 
         .notification-center {
             max-width: 800px;
-            margin: auto; /* Centrado horizontal */
+            margin: auto;
+            /* Centrado horizontal */
             padding: 20px;
-            background-color: #ffffff; /* Fondo blanco para el centro */
+            background-color: #ffffff;
+            /* Fondo blanco para el centro */
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
             text-align: center;
-            color: #004080; /* Azul oscuro */
+            color: #004080;
+            /* Azul oscuro */
         }
 
         h2 {
-            color: #0056b3; /* Azul más claro para subtítulos */
+            color: #0056b3;
+            /* Azul más claro para subtítulos */
             border-bottom: 2px solid #e0e0e0;
             padding-bottom: 10px;
         }
 
         strong {
-            display: block; /* Para que el texto destacado ocupe toda la línea */
+            display: block;
+            /* Para que el texto destacado ocupe toda la línea */
         }
 
         button {
-            background-color: #007bff; /* Azul brillante para botones */
+            background-color: #007bff;
+            /* Azul brillante para botones */
             color: white;
             border: none;
             border-radius: 5px;
-            padding: 5px 10px; /* Botones más pequeños */
+            padding: 5px 10px;
+            /* Botones más pequeños */
             cursor: pointer;
-            font-size: 14px; /* Tamaño de fuente más pequeño */
+            font-size: 14px;
+            /* Tamaño de fuente más pequeño */
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
 
         button:hover {
-            background-color: #0056b3; /* Color más oscuro al pasar el mouse */
-            transform: scale(1.05); /* Efecto de zoom al pasar el mouse */
+            background-color: #0056b3;
+            /* Color más oscuro al pasar el mouse */
+            transform: scale(1.05);
+            /* Efecto de zoom al pasar el mouse */
         }
 
         label {
@@ -68,93 +82,99 @@
         }
 
         .clear-history {
-            background-color: #dc3545; /* Rojo para el botón de limpiar historial */
+            background-color: #dc3545;
+            /* Rojo para el botón de limpiar historial */
         }
 
         .clear-history:hover {
-            background-color: #c82333; /* Rojo más oscuro al pasar el mouse */
+            background-color: #c82333;
+            /* Rojo más oscuro al pasar el mouse */
         }
     </style>
 </head>
+
 <body>
 
     <!-- Contenedor del Centro de Notificaciones -->
     <div class="container">
-      <div class="notification-center">
-          <h1>Centro de Notificaciones</h1>
+        <div class="notification-center">
+            <h1>Centro de Notificaciones</h1>
+            <h2>Notificaciones Instantáneas</h2>
+             @await Html.PartialAsync("_Notification")
 
-          <!-- Notificaciones Activas -->
-          <section class="active-notifications">
-              <h2>Notificaciones Activas</h2>
-              <ul>
-                  <li>
-                      <strong>Inventario bajo:</strong> Producto X está próximo a agotarse.
-                      <span>Fecha: 2024-10-31</span>
-                      <button class="mark-as-read">Marcar como leído</button>
-                      <button class="disable-notification">Desactivar esta notificación</button>
-                  </li>
-                  <li>
-                      <strong>Acceso Denegado:</strong> Intento de acceso a sección restringida.
-                      <span>Fecha: 2024-10-31</span>
-                      <button class="mark-as-read">Marcar como leído</button>
-                      <button class="disable-notification">Desactivar esta notificación</button>
-                  </li>
-                  <li>
-                      <strong>Actividad Sospechosa:</strong> Se detectó actividad inusual en cuenta usuario.
-                      <span>Fecha: 2024-10-30</span>
-                      <button class="mark-as-read">Marcar como leído</button>
-                      <button class="disable-notification">Desactivar esta notificación</button>
-                  </li>
-              </ul>
-          </section>
+            <!-- Notificaciones Activas -->
+            <section class="active-notifications">
+                <h2>Notificaciones Activas</h2>
+                <ul>
+                    <li>
+                        <strong>Inventario bajo:</strong> Producto X está próximo a agotarse.
+                        <span>Fecha: 2024-10-31</span>
+                        <button class="mark-as-read">Marcar como leído</button>
+                        <button class="disable-notification">Desactivar esta notificación</button>
+                    </li>
+                    <li>
+                        <strong>Acceso Denegado:</strong> Intento de acceso a sección restringida.
+                        <span>Fecha: 2024-10-31</span>
+                        <button class="mark-as-read">Marcar como leído</button>
+                        <button class="disable-notification">Desactivar esta notificación</button>
+                    </li>
+                    <li>
+                        <strong>Actividad Sospechosa:</strong> Se detectó actividad inusual en cuenta usuario.
+                        <span>Fecha: 2024-10-30</span>
+                        <button class="mark-as-read">Marcar como leído</button>
+                        <button class="disable-notification">Desactivar esta notificación</button>
+                    </li>
+                </ul>
+            </section>
 
-          <!-- Configuración de Notificaciones -->
-          <section class="settings">
-              <h2>Configuración de Notificaciones</h2>
-              <label for="frequency">Frecuencia de Notificación:</label>
-              <select id="frequency">
-                  <option value="real-time">Tiempo Real</option>
-                  <option value="daily">Diario</option>
-                  <option value="weekly">Semanal</option>
-              </select>
+            <!-- Configuración de Notificaciones -->
+            <section class="settings">
+                <h2>Configuración de Notificaciones</h2>
+                <label for="frequency">Frecuencia de Notificación:</label>
+                <select id="frequency">
+                    <option value="real-time">Tiempo Real</option>
+                    <option value="daily">Diario</option>
+                    <option value="weekly">Semanal</option>
+                </select>
 
-              <label for="notification-type">Tipo de Notificaciones:</label>
-              <select id="notification-type" multiple>
-                  <option value="inventory">Inventario</option>
-                  <option value="security">Seguridad</option>
-                  <option value="access">Acceso</option><option value="errors">Errores Críticos</option>
-              </select>
+                <label for="notification-type">Tipo de Notificaciones:</label>
+                <select id="notification-type" multiple>
+                    <option value="inventory">Inventario</option>
+                    <option value="security">Seguridad</option>
+                    <option value="access">Acceso</option>
+                    <option value="errors">Errores Críticos</option>
+                </select>
 
-              <button class="save-settings">Guardar Configuración</button>
-          </section>
+                <button class="save-settings">Guardar Configuración</button>
+            </section>
 
-          <!-- Gestión de Notificaciones -->
-          <section class="notification-management">
-              <h2>Gestión de Notificaciones</h2>
-              <button class="disable-all">Desactivar Todas las Notificaciones</button>
-              <button class="reactivate-all">Reactivar Todas las Notificaciones</button>
-              <button class="customize-settings">Personalizar Notificaciones</button>
-          </section>
+            <!-- Gestión de Notificaciones -->
+            <section class="notification-management">
+                <h2>Gestión de Notificaciones</h2>
+                <button class="disable-all">Desactivar Todas las Notificaciones</button>
+                <button class="reactivate-all">Reactivar Todas las Notificaciones</button>
+                <button class="customize-settings">Personalizar Notificaciones</button>
+            </section>
 
-          <!-- Historial de Notificaciones -->
-          <section class="history">
-              <h2>Historial de Notificaciones</h2>
-              <ul>
-                  <li>
-                      <strong>Inventario completado:</strong> Resumen del proceso de inventario completado.
-                      <span>Fecha: 2024-10-28</span>
-                      <button class="view-details">Ver Detalles</button>
-                  </li>
-                  <li>
-                      <strong>Error Crítico:</strong> Error en el proceso de digitalización.
-                      <span>Fecha: 2024-10-27</span>
-                      <button class="view-details">Ver Detalles</button>
-                  </li>
-              </ul>
-              <button class="clear-history">Limpiar Historial</button>
-          </section>
+            <!-- Historial de Notificaciones -->
+            <section class="history">
+                <h2>Historial de Notificaciones</h2>
+                <ul>
+                    <li>
+                        <strong>Inventario completado:</strong> Resumen del proceso de inventario completado.
+                        <span>Fecha: 2024-10-28</span>
+                        <button class="view-details">Ver Detalles</button>
+                    </li>
+                    <li>
+                        <strong>Error Crítico:</strong> Error en el proceso de digitalización.
+                        <span>Fecha: 2024-10-27</span>
+                        <button class="view-details">Ver Detalles</button>
+                    </li>
+                </ul>
+                <button class="clear-history">Limpiar Historial</button>
+            </section>
 
-      </div> <!-- Fin notification-center -->
+        </div> <!-- Fin notification-center -->
     </div> <!-- Fin container -->
 
     <!-- Scripts necesarios para Bootstrap -->
@@ -164,9 +184,9 @@
     <!-- Aquí puedes añadir tu script JavaScript si es necesario -->
     <!-- Ejemplo:
     <!--<script src="script.js"></script>-->
-    
 
-<script src="/js/site.js?v=y_Ngd8W21UpuCUhEqGbUKDEqFnNfTjAfb24GhJJGUyM"></script>
+
+    <script src="/js/site.js?v=y_Ngd8W21UpuCUhEqGbUKDEqFnNfTjAfb24GhJJGUyM"></script>
 
 </body>
 
